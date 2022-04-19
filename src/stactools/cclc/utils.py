@@ -1,8 +1,13 @@
+from typing import Optional, Dict, Any
 import os.path
 from typing import List, Optional
 
+from shapely.geometry import box, mapping, shape
+from pystac import Asset
 import rasterio
 from stactools.core.utils.subprocess import call
+from stactools.core.io import ReadHrefModifier
+from rasterio.warp import transform_geom
 
 
 class Tile:
@@ -25,7 +30,7 @@ class Tile:
             outdir,
             (f"{base}_E{str(int(self._left))}_N{str(int(self._bottom))}.tif"))
         args = [
-            "gdal_translate", "-of", "COG", "-co", "compress=deflate", "-co",
+            "gdal_translate", "-of", "COG", "-a_nodata", "0", "-co", "compress=deflate", "-co",
             "blocksize=512", "-projwin",
             str(self._left),
             str(self._top),

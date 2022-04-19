@@ -1,0 +1,78 @@
+{
+  "raster:bands": [
+    {
+      "nodata": 0,
+      "sampling": "area",
+      "data_type": "uint8",
+      "spatial_resolution": 1
+    }
+  ],
+  "classification:classes": [
+    {
+      "value": 1,
+      "description": "Water",
+      "color-hint": "00C5FF"
+    },
+    {
+      "value": 2,
+      "description": "Emergent Wetlands",
+      "color-hint": "00A884"
+    },
+    {
+      "value": 3,
+      "description": "Tree Canopy",
+      "color-hint": "267300"
+    },
+    {
+      "value": 4,
+      "description": "Shrubland",
+      "color-hint": "4CE600"
+    },
+    {
+      "value": 5,
+      "description": "Low Vegetation",
+      "color-hint": "A3FF73"
+    },
+    {
+      "value": 6,
+      "description": "Barren",
+      "color-hint": "FFAA00"
+    },
+    {
+      "value": 7,
+      "description": "Structures",
+      "color-hint": "FF0000"
+    },
+    {
+      "value": 8,
+      "description": "Impervious Surfaces",
+      "color-hint": "9C9C9C"
+    },
+    {
+      "value": 9,
+      "description": "Impervious Roads",
+      "color-hint": "000000"
+    },
+    {
+      "value": 10,
+      "description": "Tree Canopy over Structures",
+      "color-hint": "737300"
+    },
+    {
+      "value": 11,
+      "description": "Tree Canopy over Impervious Surfaces",
+      "color-hint": "E6E600"
+    },
+    {
+      "value": 12,
+      "description": "Tree Canopy over impervious Roads",
+      "color-hint": "FFFF73"
+    },
+    {
+      "value": 13,
+      "description": "Aberdeen Proving Ground",
+      "color-hint": "C500FF"
+    }
+  ],
+  "roles": ["data"]
+}

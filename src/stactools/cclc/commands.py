@@ -1,12 +1,12 @@
 import logging
 from typing import Optional
+import os
 
 import click
 
 from stactools.cclc.constants import DEFAULT_LEFT_BOTTOM, DEFAULT_TILE_SIZE
 from stactools.cclc.utils import tile
-
-logger = logging.getLogger(__name__)
+from stactools.cclc import stac
 
 
 def create_cclc_command(cli):
@@ -52,5 +52,28 @@ def create_cclc_command(cli):
 
         """
         tile(infile, outdir, size, left_bottom, nodata)
+
+
+    @cclc.command(
+        "create-item",
+        short_help=("Create a STAC Item from CCLC Land Cover COG file."))
+    @click.argument("INFILE")
+    @click.argument("OUTDIR")
+    @click.argument("COLLECTION")
+    def create_item_command(infile: str, outdir: str, collection: bool) -> None:
+        """Creates a STAC Item for a tile of CCLC 1m land cover classification.
+
+        \b
+        Args:
+            infile (str): HREF of the classification map COG.
+            outdir (str): Directory that will contain the STAC Item.
+            collection (str): choice
+        """
+        item = stac.create_item(infile)
+        # item_path = os.path.join(outdir, f"{item.id}.json")
+        # item.set_self_href(item_path)
+        # item.make_asset_hrefs_relative()
+        # item.validate()
+        # item.save_object()
 
     return cclc

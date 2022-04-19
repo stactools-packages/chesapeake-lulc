@@ -1,0 +1,48 @@
+{
+  "raster:bands": [
+    {
+      "nodata": 15,
+      "sampling": "area",
+      "data_type": "uint8",
+      "spatial_resolution": 1
+    }
+  ],
+  "classification:classes": [
+    {
+      "value": 1,
+      "description": "Water",
+      "color-hint": "00C5FF"
+    },
+    {
+      "value": 2,
+      "description": "Tree Canopy and Shrubs",
+      "color-hint": "267300"
+    },
+    {
+      "value": 3,
+      "description": "Low Vegetation",
+      "color-hint": "A3FF73"
+    },
+    {
+      "value": 4,
+      "description": "Barren",
+      "color-hint": "FFAA00"
+    },
+    {
+      "value": 5,
+      "description": "Impervious Surfaces",
+      "color-hint": "9C9C9C"
+    },
+    {
+      "value": 6,
+      "description": "Impervious Roads",
+      "color-hint": "000000"
+    },
+    {
+      "value": 7,
+      "description": "Aberdeen Proving Ground",
+      "color-hint": "C500FF"
+    }
+  ],
+  "roles": ["data"]
+}
