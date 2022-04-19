@@ -1,8 +1,8 @@
-name: stactools-ephemeral
+name: stactools-cclc
 channels:
   - conda-forge
   - defaults
 dependencies:
   - gdal>=3.3
-  - geos>=3.3
   - rasterio>=1.2
+  - shapely>=1.8

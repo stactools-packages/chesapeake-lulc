@@ -1,17 +1,17 @@
-# stactools-ephemeral
+# stactools-cclc
 
-[![PyPI](https://img.shields.io/pypi/v/stactools-ephemeral)](https://pypi.org/project/stactools-ephemeral/)
-[![Binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/stactools-packages/ephemeral/main?filepath=docs/installation_and_basic_usage.ipynb)
+[![PyPI](https://img.shields.io/pypi/v/stactools-cclc)](https://pypi.org/project/stactools-cclc/)
+[![Binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/stactools-packages/cclc/main?filepath=docs/installation_and_basic_usage.ipynb)
 
-- Name: ephemeral
-- Package: `stactools.ephemeral`
-- PyPI: https://pypi.org/project/stactools-ephemeral/
+- Name: cclc
+- Package: `stactools.cclc`
+- PyPI: https://pypi.org/project/stactools-cclc/
 - Owner: @githubusername
 - Dataset homepage: http://example.com
 - STAC extensions used:
   - [proj](https://github.com/stac-extensions/projection/)
 - Extra fields:
-  - `ephemeral:custom`: A custom attribute
+  - `cclc:custom`: A custom attribute
 
 A short description of the package and its usage.
 
@@ -27,7 +27,7 @@ A short description of the package and its usage.
 Description of the command line functions
 
 ```bash
-$ stac ephemeral create-item source destination
+$ stac cclc create-item source destination
 ```
 
-Use `stac ephemeral --help` to see all subcommands and options.
+Use `stac cclc --help` to see all subcommands and options.
