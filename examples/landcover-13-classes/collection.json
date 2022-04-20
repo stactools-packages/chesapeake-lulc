@@ -1,0 +1,157 @@
+{
+  "type": "Collection",
+  "id": "cc-lc-13-class",
+  "stac_version": "1.0.0",
+  "description": "High-resolution 1-meter land cover classification data for the entire Chesapeake Bay watershed based on 2013-2014 imagery from the National Agriculture Imagery Program (NAIP). The product area encompasses over 250,000 square kilometers in New York, Pennsylvania, Maryland, Delaware, West Virginia, Virginia, and the District of Columbia. The dataset was created for the Chesapeake Bay Program (CBP), which is a regional partnership of EPA, other federal, state, and local agencies and governments, nonprofits, and academic institutions that leads and directs Chesapeake Bay restoration efforts. The dataset is composed of 13 thirteen land cover classes, although not all classes exist in all areas.",
+  "links": [
+    {
+      "rel": "root",
+      "href": "./collection.json",
+      "type": "application/json",
+      "title": "13-Class Chesapeake Bay Watershed Land Cover Classification"
+    },
+    {
+      "rel": "describedby",
+      "href": "https://www.chesapeakeconservancy.org/wp-content/uploads/2020/06/Chesapeake_Conservancy_LandCover101Guide_June2020.pdf",
+      "type": "application/pdf",
+      "title": "User Guide"
+    },
+    {
+      "rel": "describedby",
+      "href": "https://www.chesapeakeconservancy.org/wp-content/uploads/2020/03/LC_Class_Descriptions.pdf",
+      "type": "application/pdf",
+      "title": "Class Descriptions"
+    },
+    {
+      "rel": "item",
+      "href": "./Baywide_13Class_20132014_E1300000_N1770000/Baywide_13Class_20132014_E1300000_N1770000.json",
+      "type": "application/json"
+    }
+  ],
+  "stac_extensions": [
+    "https://stac-extensions.github.io/item-assets/v1.0.0/schema.json",
+    "https://stac-extensions.github.io/raster/v1.0.0/schema.json",
+    "https://stac-extensions.github.io/classification/v1.0.0/schema.json"
+  ],
+  "item_assets": {
+    "data": {
+      "type": "image/tiff; application=geotiff; profile=cloud-optimized",
+      "raster:bands": [
+        {
+          "nodata": 0,
+          "sampling": "area",
+          "data_type": "uint8",
+          "spatial_resolution": 1
+        }
+      ],
+      "classification:classes": [
+        {
+          "value": 1,
+          "description": "Water",
+          "color-hint": "00C5FF"
+        },
+        {
+          "value": 2,
+          "description": "Emergent Wetlands",
+          "color-hint": "00A884"
+        },
+        {
+          "value": 3,
+          "description": "Tree Canopy",
+          "color-hint": "267300"
+        },
+        {
+          "value": 4,
+          "description": "Shrubland",
+          "color-hint": "4CE600"
+        },
+        {
+          "value": 5,
+          "description": "Low Vegetation",
+          "color-hint": "A3FF73"
+        },
+        {
+          "value": 6,
+          "description": "Barren",
+          "color-hint": "FFAA00"
+        },
+        {
+          "value": 7,
+          "description": "Structures",
+          "color-hint": "FF0000"
+        },
+        {
+          "value": 8,
+          "description": "Impervious Surfaces",
+          "color-hint": "9C9C9C"
+        },
+        {
+          "value": 9,
+          "description": "Impervious Roads",
+          "color-hint": "000000"
+        },
+        {
+          "value": 10,
+          "description": "Tree Canopy over Structures",
+          "color-hint": "737300"
+        },
+        {
+          "value": 11,
+          "description": "Tree Canopy over Impervious Surfaces",
+          "color-hint": "E6E600"
+        },
+        {
+          "value": 12,
+          "description": "Tree Canopy over impervious Roads",
+          "color-hint": "FFFF73"
+        },
+        {
+          "value": 13,
+          "description": "Aberdeen Proving Ground",
+          "color-hint": "C500FF"
+        }
+      ],
+      "roles": [
+        "data"
+      ]
+    }
+  },
+  "title": "13-Class Chesapeake Bay Watershed Land Cover Classification",
+  "extent": {
+    "spatial": {
+      "bbox": [
+        [
+          -81.14658496196135,
+          36.21291717905733,
+          -73.27357561029186,
+          44.77821441524524
+        ]
+      ]
+    },
+    "temporal": {
+      "interval": [
+        [
+          "2013-01-01T00:00:00Z",
+          "2014-12-31T23:59:59Z"
+        ]
+      ]
+    }
+  },
+  "license": "proprietary",
+  "keywords": [
+    "land cover",
+    "chesapeake bay watershed"
+  ],
+  "providers": [
+    {
+      "name": "Chesapeake Conservancy Conservation Innovation Center",
+      "roles": [
+        "producer",
+        "processor",
+        "licensor",
+        "host"
+      ],
+      "url": "https://www.chesapeakeconservancy.org/conservation-innovation-center/high-resolution-data/land-cover-data-project/"
+    }
+  ]
+}

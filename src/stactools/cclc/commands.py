@@ -3,9 +3,10 @@ from typing import Optional
 
 import click
 from click import Choice
+from pystac import CatalogType
 
 from stactools.cclc import stac
-from stactools.cclc.constants import (COLLECTIONS, DEFAULT_LEFT_BOTTOM,
+from stactools.cclc.constants import (COLLECTION_IDS, DEFAULT_LEFT_BOTTOM,
                                       DEFAULT_TILE_SIZE)
 from stactools.cclc.utils import tile
 
@@ -60,11 +61,11 @@ def create_cclc_command(cli):
     @click.argument("INFILE")
     @click.argument("OUTDIR")
     @click.option("-c",
-                  "--collection",
-                  type=Choice(COLLECTIONS),
+                  "--collection-id",
+                  type=Choice(COLLECTION_IDS),
                   required=True)
     def create_item_command(infile: str, outdir: str,
-                            collection: bool) -> None:
+                            collection_id: str) -> None:
         """Creates a STAC Item for a tile of Chesapeake Conservancey land cover
         or land use classification data.
 
@@ -72,14 +73,51 @@ def create_cclc_command(cli):
         Args:
             infile (str): HREF of the classification map COG.
             outdir (str): Directory that will contain the STAC Item.
-            collection (str): required choice of "cc-lc-13-class",
+            collection_id (str): Collection ID. Must be one of "cc-lc-13-class",
                 "cc-lc-7-class", or "cc-lu"
         """
-        item = stac.create_item(infile, collection)
+        item = stac.create_item(infile, collection_id)
         item_path = os.path.join(outdir, f"{item.id}.json")
         item.set_self_href(item_path)
         item.make_asset_hrefs_relative()
         item.validate()
         item.save_object()
+
+    @cclc.command(
+        "create-collection",
+        short_help=("Creates a STAC collection of Chesapeake Conservancy land "
+                    "cover or land use classification tiles."),
+    )
+    @click.argument("INFILE")
+    @click.argument("OUTDIR")
+    @click.option("-c",
+                  "--collection-id",
+                  type=Choice(COLLECTION_IDS),
+                  required=True)
+    def create_collection_command(infile: str, outdir: str,
+                                  collection_id: str) -> None:
+        """Creates a STAC Collection for Items defined by the hrefs in INFILE."
+
+        \b
+        Args:
+            infile (str): Text file containing one href per line. The hrefs
+                should point to Chesapeake Conservancy land cover or land use
+                COG files.
+            outdir (str): Directory that will contain the collection.
+            collection (str): Collection ID. Must be one of "cc-lc-13-class",
+                "cc-lc-7-class", or "cc-lu"
+        """
+        with open(infile) as file:
+            hrefs = [line.strip() for line in file.readlines()]
+
+        collection = stac.create_collection(collection_id)
+        collection.set_self_href(os.path.join(outdir, "collection.json"))
+        collection.catalog_type = CatalogType.SELF_CONTAINED
+        for href in hrefs:
+            item = stac.create_item(href, collection_id)
+            collection.add_item(item)
+        collection.make_all_asset_hrefs_relative()
+        collection.validate_all()
+        collection.save()
 
     return cclc

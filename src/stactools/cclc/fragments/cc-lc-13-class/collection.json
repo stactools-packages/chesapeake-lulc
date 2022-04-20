@@ -1,0 +1,56 @@
+{
+  "id": "cc-lc-13-class",
+  "title": "13-Class Chesapeake Bay Watershed Land Cover Classification",
+  "description": "High-resolution 1-meter land cover classification data for the entire Chesapeake Bay watershed based on 2013-2014 imagery from the National Agriculture Imagery Program (NAIP). The product area encompasses over 250,000 square kilometers in New York, Pennsylvania, Maryland, Delaware, West Virginia, Virginia, and the District of Columbia. The dataset was created for the Chesapeake Bay Program (CBP), which is a regional partnership of EPA, other federal, state, and local agencies and governments, nonprofits, and academic institutions that leads and directs Chesapeake Bay restoration efforts. The dataset is composed of 13 thirteen land cover classes, although not all classes exist in all areas.",
+  "license": "proprietary",
+  "links": [
+    {
+      "rel": "describedby",
+      "href": "https://www.chesapeakeconservancy.org/wp-content/uploads/2020/06/Chesapeake_Conservancy_LandCover101Guide_June2020.pdf",
+      "type": "application/pdf",
+      "title": "User Guide"
+    },
+    {
+      "rel": "describedby",
+      "href": "https://www.chesapeakeconservancy.org/wp-content/uploads/2020/03/LC_Class_Descriptions.pdf",
+      "type": "application/pdf",
+      "title": "Class Descriptions"
+    }
+  ],
+  "keywords": [
+    "land cover",
+    "chesapeake bay watershed"
+  ],
+  "providers": [
+    {
+      "name": "Chesapeake Conservancy Conservation Innovation Center",
+      "roles": [
+        "producer",
+        "processor",
+        "licensor",
+        "host"
+      ],
+      "url": "https://www.chesapeakeconservancy.org/conservation-innovation-center/high-resolution-data/land-cover-data-project/"
+    }
+  ],
+  "extent": {
+    "spatial": {
+      "bbox": [
+        [
+          -81.14658496196135,
+          36.21291717905733,
+          -73.27357561029186,
+          44.77821441524524
+        ]
+      ]
+    },
+    "temporal": {
+      "interval": [
+        [
+          "2013-01-01T00:00:00Z",
+          "2014-12-31T23:59:59Z"
+        ]
+      ]
+    }
+  }
+}
