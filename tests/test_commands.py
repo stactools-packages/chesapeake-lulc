@@ -1,61 +1,49 @@
 import os.path
 from tempfile import TemporaryDirectory
+from typing import Callable, List
 
 import pystac
+from click import Command, Group
 from stactools.testing import CliTestCase
 
 from stactools.cclc.commands import create_cclc_command
+from tests import test_data
 
 
-class CommandsTest(CliTestCase):
+class ItemCommandTest(CliTestCase):
 
-    def create_subcommand_functions(self):
+    def create_subcommand_functions(self) -> List[Callable[[Group], Command]]:
         return [create_cclc_command]
 
-    def test_create_collection(self):
+    def test_create_item_7class_landcover(self) -> None:
+        infile = test_data.get_path(
+            "data-files/Baywide_7class_20132014_E1300000_N1770000.tif")
         with TemporaryDirectory() as tmp_dir:
-            # Run your custom create-collection command and validate
+            cmd = f"cclc create-item {infile} {tmp_dir} -c cc-lc-7-class"
+            self.run_command(cmd)
+            item_path = os.path.join(
+                tmp_dir, "Baywide_7Class_20132014_E1300000_N1770000.json")
+            item = pystac.read_file(item_path)
+        item.validate()
 
-            # Example:
-            destination = os.path.join(tmp_dir, "collection.json")
-
-            result = self.run_command(
-                ["cclc", "create-collection", destination])
-
-            self.assertEqual(result.exit_code,
-                             0,
-                             msg="\n{}".format(result.output))
-
-            jsons = [p for p in os.listdir(tmp_dir) if p.endswith(".json")]
-            self.assertEqual(len(jsons), 1)
-
-            collection = pystac.read_file(destination)
-            self.assertEqual(collection.id, "my-collection-id")
-            # self.assertEqual(item.other_attr...
-
-            collection.validate()
-
-    def test_create_item(self):
+    def test_create_item_13class_landcover(self) -> None:
+        infile = test_data.get_path(
+            "data-files/Baywide_13class_20132014_E1300000_N1770000.tif")
         with TemporaryDirectory() as tmp_dir:
-            # Run your custom create-item command and validate
+            cmd = f"cclc create-item {infile} {tmp_dir} -c cc-lc-13-class"
+            self.run_command(cmd)
+            item_path = os.path.join(
+                tmp_dir, "Baywide_13Class_20132014_E1300000_N1770000.json")
+            item = pystac.read_file(item_path)
+        item.validate()
 
-            # Example:
-            destination = os.path.join(tmp_dir, "item.json")
-            result = self.run_command([
-                "cclc",
-                "create-item",
-                "/path/to/asset.tif",
-                destination,
-            ])
-            self.assertEqual(result.exit_code,
-                             0,
-                             msg="\n{}".format(result.output))
-
-            jsons = [p for p in os.listdir(tmp_dir) if p.endswith(".json")]
-            self.assertEqual(len(jsons), 1)
-
-            item = pystac.read_file(destination)
-            self.assertEqual(item.id, "my-item-id")
-            # self.assertEqual(item.other_attr...
-
-            item.validate()
+    def test_create_item_landuse(self) -> None:
+        infile = test_data.get_path(
+            "data-files/Baywide_1m_LU_E1300000_N1770000.tif")
+        with TemporaryDirectory() as tmp_dir:
+            cmd = f"cclc create-item {infile} {tmp_dir} -c cc-lu"
+            self.run_command(cmd)
+            item_path = os.path.join(tmp_dir,
+                                     "Baywide_1m_LU_E1300000_N1770000.json")
+            item = pystac.read_file(item_path)
+        item.validate()

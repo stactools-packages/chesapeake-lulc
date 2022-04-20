@@ -1,8 +1,8 @@
 import stactools.core
 
-# from stactools.cclc.stac import create_collection, create_item
+from stactools.cclc.stac import create_collection, create_item
 
-# __all__ = ['create_collection', 'create_item']
+__all__ = ['create_collection', 'create_item']
 
 stactools.core.use_fsspec()
 
