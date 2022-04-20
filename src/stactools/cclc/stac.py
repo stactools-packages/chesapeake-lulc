@@ -1,21 +1,35 @@
-from ast import Add
 from datetime import datetime, timezone
 from typing import Optional
-import json
 
-from pystac import (Asset, CatalogType, Collection, Extent, Item, MediaType,
-                    Provider, ProviderRole, SpatialExtent, TemporalExtent)
+from pystac import Item
 from pystac.extensions.projection import ProjectionExtension
+from pystac.extensions.raster import RasterExtension
 from stactools.core.io import ReadHrefModifier
 
+from stactools.cclc import constants
 from stactools.cclc.fragments import StacFragments
 from stactools.cclc.metadata import Metadata
-from stactools.cclc import constants
 
 
-def create_item(collection: str, href: str, read_href_modifier: Optional[ReadHrefModifier] = None) -> Item:
+def create_item(href: str,
+                collection: str,
+                read_href_modifier: Optional[ReadHrefModifier] = None) -> Item:
+    """Create a collection-specific STAC Item for a COG tile of the Chesapeake
+    Conservancy land cover or land use data.
+
+    Args:
+        href (str): HREF to a COG containing classification data.
+        collection (str): The id of the collection to which the Item belongs.
+        read_href_modifier (Callable[[str], str]): An optional function to
+            modify the href (e.g. to add a token to a url).
+    Returns:
+        Item: STAC Item object representing the tile of classification data.
     """
-    """
+    if collection not in constants.COLLECTIONS:
+        raise ValueError(
+            f"The collection must be one of: {', '.join(constants.COLLECTIONS)}."
+        )
+
     metadata = Metadata(href, read_href_modifier)
 
     item = Item(id=metadata.id,
@@ -28,13 +42,14 @@ def create_item(collection: str, href: str, read_href_modifier: Optional[ReadHre
                 })
     item.common_metadata.created = datetime.now(tz=timezone.utc)
 
-    projection = ProjectionExtension.ext(item, add_if_missing=True)
-    projection.apply(**metadata.proj_properties)
-
     asset = StacFragments(collection).get_asset(href)
     item.add_asset("data", asset)
 
+    projection = ProjectionExtension.ext(item, add_if_missing=True)
+    projection.apply(**metadata.proj_properties)
+
+    RasterExtension.add_to(item)
+
     item.stac_extensions.append(constants.CLASSIFICATION_SCHEMA)
 
-    print(json.dumps(item.to_dict(), indent=2))
     return item

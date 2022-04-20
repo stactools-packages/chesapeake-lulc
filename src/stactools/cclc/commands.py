@@ -1,12 +1,13 @@
-import logging
-from typing import Optional
 import os
+from typing import Optional
 
 import click
+from click import Choice
 
-from stactools.cclc.constants import DEFAULT_LEFT_BOTTOM, DEFAULT_TILE_SIZE
-from stactools.cclc.utils import tile
 from stactools.cclc import stac
+from stactools.cclc.constants import (COLLECTIONS, DEFAULT_LEFT_BOTTOM,
+                                      DEFAULT_TILE_SIZE)
+from stactools.cclc.utils import tile
 
 
 def create_cclc_command(cli):
@@ -20,8 +21,8 @@ def create_cclc_command(cli):
         pass
 
     @cclc.command("tile", help="Tiles the input COG to a grid")
-    @click.argument("infile")
-    @click.argument("outdir")
+    @click.argument("INFILE")
+    @click.argument("OUTDIR")
     @click.option("-s",
                   "--size",
                   default=DEFAULT_TILE_SIZE,
@@ -53,27 +54,32 @@ def create_cclc_command(cli):
         """
         tile(infile, outdir, size, left_bottom, nodata)
 
-
     @cclc.command(
         "create-item",
         short_help=("Create a STAC Item from CCLC Land Cover COG file."))
     @click.argument("INFILE")
     @click.argument("OUTDIR")
-    @click.argument("COLLECTION")
-    def create_item_command(infile: str, outdir: str, collection: bool) -> None:
-        """Creates a STAC Item for a tile of CCLC 1m land cover classification.
+    @click.option("-c",
+                  "--collection",
+                  type=Choice(COLLECTIONS),
+                  required=True)
+    def create_item_command(infile: str, outdir: str,
+                            collection: bool) -> None:
+        """Creates a STAC Item for a tile of Chesapeake Conservancey land cover
+        or land use classification data.
 
         \b
         Args:
             infile (str): HREF of the classification map COG.
             outdir (str): Directory that will contain the STAC Item.
-            collection (str): choice
+            collection (str): required choice of "cc-lc-13-class",
+                "cc-lc-7-class", or "cc-lu"
         """
-        item = stac.create_item(infile)
-        # item_path = os.path.join(outdir, f"{item.id}.json")
-        # item.set_self_href(item_path)
-        # item.make_asset_hrefs_relative()
-        # item.validate()
-        # item.save_object()
+        item = stac.create_item(infile, collection)
+        item_path = os.path.join(outdir, f"{item.id}.json")
+        item.set_self_href(item_path)
+        item.make_asset_hrefs_relative()
+        item.validate()
+        item.save_object()
 
     return cclc

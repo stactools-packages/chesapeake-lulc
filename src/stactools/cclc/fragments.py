@@ -1,15 +1,15 @@
 import json
-from typing import Any, Collection, Dict, Optional
+from typing import Any, Collection
 
 import pkg_resources
-from pystac import Asset, Extent, Link, MediaType, Provider, Summaries
-from pystac.extensions.item_assets import AssetDefinition
+from pystac import Asset, MediaType
 from pystac.utils import make_absolute_href
 
 
 class StacFragments:
     """Class for accessing asset data."""
-    def __init__(self, collection) -> None:
+
+    def __init__(self, collection: str) -> None:
         self.collection = collection
 
     def get_asset(self, href: str) -> Asset:

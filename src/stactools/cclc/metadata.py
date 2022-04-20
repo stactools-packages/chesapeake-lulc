@@ -1,13 +1,15 @@
-from typing import Optional
 import os.path
+from typing import Optional
 
-from shapely.geometry import box, mapping, shape
 import rasterio
-from stactools.core.io import ReadHrefModifier
 from rasterio.warp import transform_geom
+from shapely.geometry import box, mapping, shape
+from stactools.core.io import ReadHrefModifier
 
 
 class Metadata:
+    """Class for accessing Item metadata from a COG."""
+
     def __init__(self,
                  href: str,
                  read_href_modifier: Optional[ReadHrefModifier] = None):
@@ -26,7 +28,8 @@ class Metadata:
 
     @property
     def geometry(self):
-        return transform_geom(self.source_crs, "EPSG:4326", self.source_geometry)
+        return transform_geom(self.source_crs, "EPSG:4326",
+                              self.source_geometry)
 
     @property
     def bbox(self):
