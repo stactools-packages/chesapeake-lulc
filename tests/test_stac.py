@@ -16,9 +16,9 @@ class StacTest(unittest.TestCase):
 
     def test_create_item_13class_landcover(self) -> None:
         href = test_data.get_path(
-            "data-files/Baywide_13class_20132014_E1300000_N1770000.tif")
+            "data-files/Baywide_13Class_20132014_E1300000_N1770000.tif")
         item = stac.create_item(href, "chesapeake-lc-13")
-        self.assertEqual(item.id, "Baywide_13class_20132014_E1300000_N1770000")
+        self.assertEqual(item.id, "Baywide_13Class_20132014_E1300000_N1770000")
         self.assertEqual(len(item.assets), 1)
         item.validate()
 

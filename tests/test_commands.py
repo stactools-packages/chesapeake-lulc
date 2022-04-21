@@ -22,13 +22,13 @@ class ItemCommandTest(CliTestCase):
             cmd = f"chesapeake create-item {infile} {tmp_dir} chesapeake-lc-7"
             self.run_command(cmd)
             item_path = os.path.join(
-                tmp_dir, "Baywide_7Class_20132014_E1300000_N1770000.json")
+                tmp_dir, "Baywide_7class_20132014_E1300000_N1770000.json")
             item = pystac.read_file(item_path)
         item.validate()
 
     def test_create_item_13class_landcover(self) -> None:
         infile = test_data.get_path(
-            "data-files/Baywide_13class_20132014_E1300000_N1770000.tif")
+            "data-files/Baywide_13Class_20132014_E1300000_N1770000.tif")
         with TemporaryDirectory() as tmp_dir:
             cmd = f"chesapeake create-item {infile} {tmp_dir} chesapeake-lc-13"
             self.run_command(cmd)
@@ -39,11 +39,11 @@ class ItemCommandTest(CliTestCase):
 
     def test_create_item_landuse(self) -> None:
         infile = test_data.get_path(
-            "data-files/Baywide_1m_LU_E1300000_N1770000.tif")
+            "data-files/BayWide_1m_LU_E1300000_N1770000.tif")
         with TemporaryDirectory() as tmp_dir:
             cmd = f"chesapeake create-item {infile} {tmp_dir} chesapeake-lu"
             self.run_command(cmd)
             item_path = os.path.join(tmp_dir,
-                                     "Baywide_1m_LU_E1300000_N1770000.json")
+                                     "BayWide_1m_LU_E1300000_N1770000.json")
             item = pystac.read_file(item_path)
         item.validate()
