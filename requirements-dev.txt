@@ -15,4 +15,5 @@ sphinxcontrib-napoleon
 toml
 types-click
 types-pytz
+types-setuptools
 yapf
