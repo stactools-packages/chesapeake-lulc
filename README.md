@@ -1,18 +1,55 @@
-# stactools-template
+# stactools-chesapeake
 
-This is a template repo used for creating new packages for `stactools`.
+[![PyPI](https://img.shields.io/pypi/v/stactools-chesapeake)](https://pypi.org/project/stactools-chesapeake/)
+[![Binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/stactools-packages/chesapeake/main?filepath=docs/installation_and_basic_usage.ipynb)
 
-## How to use
+- Name: chesapeake
+- Package: `stactools.chesapeake`
+- PyPI: https://pypi.org/project/stactools-chesapeake/
+- Owner: @pjhartzell
+- Dataset homepage: https://www.chesapeakeconservancy.org/conservation-innovation-center/high-resolution-data/
+- STAC extensions used:
+  - [classification](https://github.com/stac-extensions/classification)
+  - [item-assets](https://github.com/stac-extensions/item-assets)
+  - [projection](https://github.com/stac-extensions/projection/)
+  - [raster](https://github.com/stac-extensions/raster)
 
-1. Clone this template repository as your package name, e.g. `landsat`.
-   This name should be short, memorable, and a valid Python package name (i.e. it shouldn't start with a number, etc).
-   It can, however, include a hyphen, in which case the name for Python imports will be the underscored version, e.g. `landsat-8` goes to `stactools.landsat_8`.
-   Your name will be used on PyPI to publish the package in the stactools namespace, e.g. `stactools-landsat`.
-2. Change into the top-level directory of your package and run `scripts/rename`.
-   This will update _most_ of the files in the repository with your new package name.
-3. Update `setup.cfg` with your package description and such.
-4. Update the LICENSE with your company's information (or whomever holds the copyright).
-5. Run `sphinx-quickstart` in the `docs` directory to create the documentation template.
-6. Update `docs/installation_and_basic_usage.ipynb` to provide an interactive notebook to help users get started. Include the following badge at the top of the README to launch the notebook: [![Binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/stactools-packages/template/main?filepath=docs/installation_and_basic_usage.ipynb). Be sure to modify the badge href to match your package repo.
-7. Add example Items (and Collections and Catalogs, if included) to a `examples/` directory.
-8. Delete this file, and rename `README-template.md` to `README.md`. Update your new README to provide information about how to use your package.
+Generate STAC Items and Collections for high-resolution (1 meter) Land Use and Land Cover classification raster products for the Chesapeake Bay Watershed. The data are produced by the Chesapeake Conservancy [Conservation Innovation Center](https://www.chesapeakeconservancy.org/conservation-innovation-center/high-resolution-data/). Three STAC Collections are available:
+- 7-class Land Cover: `chesapeake-lc-7`
+- 13-class Land Cover: `chesapeake-lc-13`
+- 17-class Land Use `chesapeake-lu`
+
+## Examples
+
+### STAC objects
+
+- [Collection](examples/chesapeake-lc-7/collection.json)
+- [Item](examples/chesapeake-lc-7/Baywide_7Class_20132014_E1300000_N1770000/Baywide_7Class_20132014_E1300000_N1770000.json)
+
+### Command-line usage
+
+To create a STAC Item:
+
+```bash
+$ stac chesapeake create-item <source-cog-file> <output-directory> <collection-id>
+```
+
+For example:
+
+```bash
+$ stac chesapeake create-item tests/data-files/Baywide_7class_20132014_E1300000_N1770000.tif examples chesapeake-lc-7
+```
+
+To create a STAC Collection, a text file containing hrefs to one or more COG files is required:
+
+```bash
+$ stac chesapeake create-collectin <file-of-cog-hrefs> <output-directory> <collection-id>
+```
+
+For example, the following command will create the contents of the `examples/chesapeake-lc-7` directory:
+
+```bash
+$ stac chesapeake create-collection examples/chesapeake-lc-7.txt examples/chesapeake-lc-7 chesapeake-lc-7
+```
+
+Use `stac chesapeake --help` to see all subcommands and options.
