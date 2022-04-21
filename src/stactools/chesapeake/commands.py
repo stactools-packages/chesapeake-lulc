@@ -9,7 +9,7 @@ from stactools.chesapeake import stac
 from stactools.chesapeake.constants import (COLLECTION_IDS,
                                             DEFAULT_LEFT_BOTTOM,
                                             DEFAULT_TILE_SIZE)
-from stactools.chesapeake.utils import tile
+from stactools.chesapeake.utils import remove_nodata, tile
 
 
 def create_chesapeake_command(cli):
@@ -22,7 +22,7 @@ def create_chesapeake_command(cli):
     def chesapeake():
         pass
 
-    @chesapeake.command("tile", help="Tiles the input COG to a grid")
+    @chesapeake.command("tile", help="Tiles the input file to a grid")
     @click.argument("INFILE")
     @click.argument("OUTDIR")
     @click.option("-s",
@@ -57,8 +57,24 @@ def create_chesapeake_command(cli):
         tile(infile, outdir, size, left_bottom, nodata)
 
     @chesapeake.command(
+        "remove-nodata-tifs",
+        help="Removes TIF files that contain only nodata values")
+    @click.argument("INDIR")
+    def remove_nodata_tifs_command(indir: str) -> None:
+        """Removes TIF files that contain only nodata values.
+
+        Places TIF files that contain only nodata values in a subdirectory named
+        "nodata_tifs". Useful after tiling a large area where many tiles do not
+        intersect valid data."
+
+        Args:
+            indir (str): Directory of TIF files.
+        """
+        remove_nodata(indir)
+
+    @chesapeake.command(
         "create-item",
-        short_help=("Create a STAC Item from chesapeake Land Cover COG file."))
+        short_help=("Create a STAC Item from chesapeake Land Cover COG file"))
     @click.argument("INFILE")
     @click.argument("OUTDIR")
     @click.argument("COLLECTION_ID", type=Choice(COLLECTION_IDS))
@@ -84,7 +100,7 @@ def create_chesapeake_command(cli):
     @chesapeake.command(
         "create-collection",
         short_help=("Creates a STAC collection of Chesapeake Conservancy land "
-                    "cover or land use classification tiles."),
+                    "cover or land use classification tiles"),
     )
     @click.argument("INFILE")
     @click.argument("OUTDIR")
