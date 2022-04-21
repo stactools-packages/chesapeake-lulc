@@ -5,23 +5,24 @@ import click
 from click import Choice
 from pystac import CatalogType
 
-from stactools.cclc import stac
-from stactools.cclc.constants import (COLLECTION_IDS, DEFAULT_LEFT_BOTTOM,
-                                      DEFAULT_TILE_SIZE)
-from stactools.cclc.utils import tile
+from stactools.chesapeake import stac
+from stactools.chesapeake.constants import (COLLECTION_IDS,
+                                            DEFAULT_LEFT_BOTTOM,
+                                            DEFAULT_TILE_SIZE)
+from stactools.chesapeake.utils import tile
 
 
-def create_cclc_command(cli):
-    """Creates the stactools-cclc command line utility."""
+def create_chesapeake_command(cli):
+    """Creates the stactools-chesapeake command line utility."""
 
     @cli.group(
-        "cclc",
-        short_help=("Commands for working with stactools-cclc"),
+        "chesapeake",
+        short_help=("Commands for working with stactools-chesapeake"),
     )
-    def cclc():
+    def chesapeake():
         pass
 
-    @cclc.command("tile", help="Tiles the input COG to a grid")
+    @chesapeake.command("tile", help="Tiles the input COG to a grid")
     @click.argument("INFILE")
     @click.argument("OUTDIR")
     @click.option("-s",
@@ -41,7 +42,7 @@ def create_cclc_command(cli):
                      nodata: Optional[int] = None) -> None:
         """Tiles the input file to a grid.
 
-        The source CCLC data are large GeoTIFFS, so we tile them to COGs.
+        The source chesapeake data are large GeoTIFFS, so we tile them to COGs.
 
         \b
         Args:
@@ -55,15 +56,12 @@ def create_cclc_command(cli):
         """
         tile(infile, outdir, size, left_bottom, nodata)
 
-    @cclc.command(
+    @chesapeake.command(
         "create-item",
-        short_help=("Create a STAC Item from CCLC Land Cover COG file."))
+        short_help=("Create a STAC Item from chesapeake Land Cover COG file."))
     @click.argument("INFILE")
     @click.argument("OUTDIR")
-    @click.option("-c",
-                  "--collection-id",
-                  type=Choice(COLLECTION_IDS),
-                  required=True)
+    @click.argument("COLLECTION_ID", type=Choice(COLLECTION_IDS))
     def create_item_command(infile: str, outdir: str,
                             collection_id: str) -> None:
         """Creates a STAC Item for a tile of Chesapeake Conservancey land cover
@@ -73,8 +71,8 @@ def create_cclc_command(cli):
         Args:
             infile (str): HREF of the classification map COG.
             outdir (str): Directory that will contain the STAC Item.
-            collection_id (str): Collection ID. Must be one of "cc-lc-13-class",
-                "cc-lc-7-class", or "cc-lu"
+            collection_id (str): Collection ID. Must be one of
+                "chesapeake-lc-7", "chesapeake-lc-13", or "chesapeake-lu".
         """
         item = stac.create_item(infile, collection_id)
         item_path = os.path.join(outdir, f"{item.id}.json")
@@ -83,17 +81,14 @@ def create_cclc_command(cli):
         item.validate()
         item.save_object()
 
-    @cclc.command(
+    @chesapeake.command(
         "create-collection",
         short_help=("Creates a STAC collection of Chesapeake Conservancy land "
                     "cover or land use classification tiles."),
     )
     @click.argument("INFILE")
     @click.argument("OUTDIR")
-    @click.option("-c",
-                  "--collection-id",
-                  type=Choice(COLLECTION_IDS),
-                  required=True)
+    @click.argument("COLLECTION_ID", type=Choice(COLLECTION_IDS))
     def create_collection_command(infile: str, outdir: str,
                                   collection_id: str) -> None:
         """Creates a STAC Collection for Items defined by the hrefs in INFILE."
@@ -104,8 +99,8 @@ def create_cclc_command(cli):
                 should point to Chesapeake Conservancy land cover or land use
                 COG files.
             outdir (str): Directory that will contain the collection.
-            collection (str): Collection ID. Must be one of "cc-lc-13-class",
-                "cc-lc-7-class", or "cc-lu"
+            collection_id (str): Collection ID. Must be one of
+                "chesapeake-lc-7", "chesapeake-lc-13", or "chesapeake-lu".
         """
         with open(infile) as file:
             hrefs = [line.strip() for line in file.readlines()]
@@ -120,4 +115,4 @@ def create_cclc_command(cli):
         collection.validate_all()
         collection.save()
 
-    return cclc
+    return chesapeake

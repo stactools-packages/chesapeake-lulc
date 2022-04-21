@@ -30,7 +30,7 @@ class StacFragments:
     def _load(self, file_name: str) -> Any:
         try:
             with pkg_resources.resource_stream(
-                    "stactools.cclc.fragments",
+                    "stactools.chesapeake.fragments",
                     f"fragments/{self.collection_id}/{file_name}") as stream:
                 return json.load(stream)
         except FileNotFoundError as e:

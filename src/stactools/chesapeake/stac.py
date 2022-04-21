@@ -7,9 +7,9 @@ from pystac.extensions.projection import ProjectionExtension
 from pystac.extensions.raster import RasterExtension
 from stactools.core.io import ReadHrefModifier
 
-from stactools.cclc import constants
-from stactools.cclc.fragments import StacFragments
-from stactools.cclc.metadata import Metadata
+from stactools.chesapeake import constants
+from stactools.chesapeake.fragments import StacFragments
+from stactools.chesapeake.metadata import Metadata
 
 
 def create_item(href: str,
@@ -62,7 +62,7 @@ def create_collection(collection_id: str) -> Collection:
 
     Args:
         collection_id (str): ID of the STAC Collection. Must be one of
-        "cc-lc-13-class", "cc-lc-7-class", or "cc-lu"
+        "chesapeake-lc-13", "chesapeake-lc-7", or "chesapeake-lu"
     Returns:
         Collection: The created STAC Collection.
     """
