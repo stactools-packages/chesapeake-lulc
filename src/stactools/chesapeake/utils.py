@@ -28,8 +28,8 @@ class Tile:
             outdir,
             (f"{base}_E{str(int(self._left))}_N{str(int(self._bottom))}.tif"))
         args = [
-            "gdal_translate", "-of", "COG", "-a_nodata", "0", "-co",
-            "compress=deflate", "-co", "blocksize=512", "-projwin",
+            "gdal_translate", "-of", "COG", "-co", "compress=deflate", "-co",
+            "blocksize=512", "-projwin",
             str(self._left),
             str(self._top),
             str(self._right),
