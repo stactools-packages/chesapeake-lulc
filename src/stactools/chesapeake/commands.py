@@ -73,7 +73,8 @@ def create_chesapeake_command(cli):
 
         Args:
             indir (str): Directory of TIF files to be examined.
-            nodata_dir (str): Optional directory for the nodata TIF files.
+            nodata_dir (Optional[str]): Optional directory for the nodata TIF
+                files.
         """
         if nodata_dir is None:
             nodata_dir = os.path.join(indir, "nodata_tifs")

@@ -76,13 +76,12 @@ def create_tiles(left: float,
 
 
 def remove_nodata(indir: str, nodata_dir: str) -> None:
-    """Removes TIF files that contain only nodata values to a new directory
-    named "nodata_tifs".
+    """Removes TIF files that contain only nodata values to a new directory.
 
     Args:
         indir (str): Directory containing the TIF files.
-        nodata_dir (Optional[str]): Directory to move TIF files that contain
-            only nodata values.
+        nodata_dir (str): New directory for the TIF files that contain only
+            nodata values.
     """
     os.mkdir(nodata_dir)
 
