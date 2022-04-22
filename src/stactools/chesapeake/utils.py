@@ -1,6 +1,9 @@
-import os.path
-from typing import List, Optional
+import os
+import shutil
+from glob import glob
+from typing import List, Optional, Tuple
 
+import numpy as np
 import rasterio
 from stactools.core.utils.subprocess import call
 
@@ -32,7 +35,7 @@ class Tile:
             str(self._right),
             str(self._bottom)
         ]
-        if self._nodata:
+        if self._nodata is not None:
             args.extend(["-a_nodata", str(self._nodata)])
         args.append(infile)
         args.append(outfile)
@@ -42,7 +45,7 @@ class Tile:
 def tile(infile: str,
          outdir: str,
          size: int,
-         left_bottom: tuple[(int, int)],
+         left_bottom: Tuple[(int, int)],
          nodata: Optional[int] = None) -> None:
     """Tiles the given input to a grid."""
     with rasterio.open(infile) as dataset:
@@ -70,3 +73,32 @@ def create_tiles(left: float,
         x += size
         y = bottom
     return tiles
+
+
+def remove_nodata(indir: str, nodata_dir: str) -> None:
+    """Removes TIF files that contain only nodata values to a new directory.
+
+    Args:
+        indir (str): Directory containing the TIF files.
+        nodata_dir (str): New directory for the TIF files that contain only
+            nodata values.
+    """
+    os.mkdir(nodata_dir)
+
+    tif_files = glob(f"{indir}/*.tif")
+    for tif_file in tif_files:
+        all_nodata = False
+        with rasterio.open(tif_file) as src:
+            nodata = src.nodata
+            data = src.read(1)
+            if np.all((data == nodata)):
+                all_nodata = True
+
+        if all_nodata:
+            filename = os.path.basename(tif_file)
+            shutil.move(tif_file, os.path.join(nodata_dir, filename))
+            print("R ", end="", flush=True)
+        else:
+            print(". ", end="", flush=True)
+
+    print()

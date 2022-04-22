@@ -1,0 +1,51 @@
+{
+  "id": "chesapeake-lu",
+  "title": "Chesapeake Bay Watershed Land Use Classification",
+  "description": "High-resolution 1-meter land use classification data for the entire Chesapeake Bay watershed. The dataset was created by modifying the 2013-2014 high-resolution land cover dataset using 13 ancillary datasets including data on zoning, land use, parcel boundaries, landfills, floodplains, and wetlands. The product area encompasses over 250,000 square kilometers in New York, Pennsylvania, Maryland, Delaware, West Virginia, Virginia, and the District of Columbia. The dataset was created for the Chesapeake Bay Program (CBP), which is a regional partnership of EPA, other federal, state, and local agencies and governments, nonprofits, and academic institutions that leads and directs Chesapeake Bay restoration efforts. The dataset is composed of 17 land use classes in Virginia and 16 classes in all other jurisdictions.",
+  "license": "proprietary",
+  "links": [
+    {
+      "rel": "describedby",
+      "href": "https://www.chesapeakeconservancy.org/wp-content/uploads/2018/11/2013-Phase-6-Mapped-Land-Use-Definitions-Updated-PC-11302018.pdf",
+      "type": "application/pdf",
+      "title": "Class Descriptions"
+    }
+  ],
+  "keywords": [
+    "land use",
+    "chesapeake bay watershed",
+    "chesapeake conservancy"
+  ],
+  "providers": [
+    {
+      "name": "Chesapeake Conservancy Conservation Innovation Center",
+      "roles": [
+        "producer",
+        "processor",
+        "licensor",
+        "host"
+      ],
+      "url": "https://www.chesapeakeconservancy.org/conservation-innovation-center/high-resolution-data/land-use-data-project/"
+    }
+  ],
+  "extent": {
+    "spatial": {
+      "bbox": [
+        [
+          -81.14648244566828,
+          36.18730972451623,
+          -73.11082086653798,
+          44.7781991560751
+        ]
+      ]
+    },
+    "temporal": {
+      "interval": [
+        [
+          "2013-01-01T00:00:00Z",
+          "2014-12-31T23:59:59Z"
+        ]
+      ]
+    }
+  }
+}

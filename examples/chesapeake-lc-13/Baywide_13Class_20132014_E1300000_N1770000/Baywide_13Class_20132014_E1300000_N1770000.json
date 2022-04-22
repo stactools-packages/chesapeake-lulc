@@ -1,0 +1,168 @@
+{
+  "type": "Feature",
+  "stac_version": "1.0.0",
+  "id": "Baywide_13Class_20132014_E1300000_N1770000",
+  "properties": {
+    "start_datetime": "2013-01-01T00:00:00Z",
+    "end_datetime": "2014-12-31T23:59:59Z",
+    "created": "2022-04-21T13:02:44.588825Z",
+    "proj:epsg": null,
+    "proj:wkt2": "PROJCS[\"USA_Contiguous_Albers_Equal_Area_Conic_USGS_version\",GEOGCS[\"NAD83\",DATUM[\"North_American_Datum_1983\",SPHEROID[\"GRS 1980\",6378137,298.257222101004,AUTHORITY[\"EPSG\",\"7019\"]],AUTHORITY[\"EPSG\",\"6269\"]],PRIMEM[\"Greenwich\",0],UNIT[\"degree\",0.0174532925199433,AUTHORITY[\"EPSG\",\"9122\"]],AUTHORITY[\"EPSG\",\"4269\"]],PROJECTION[\"Albers_Conic_Equal_Area\"],PARAMETER[\"latitude_of_center\",23],PARAMETER[\"longitude_of_center\",-96],PARAMETER[\"standard_parallel_1\",29.5],PARAMETER[\"standard_parallel_2\",45.5],PARAMETER[\"false_easting\",0],PARAMETER[\"false_northing\",0],UNIT[\"metre\",1,AUTHORITY[\"EPSG\",\"9001\"]],AXIS[\"Easting\",EAST],AXIS[\"Northing\",NORTH]]",
+    "proj:shape": [
+      10000,
+      10000
+    ],
+    "proj:transform": [
+      1.0,
+      0.0,
+      1300000.0000000005,
+      0.0,
+      -1.0,
+      1779999.9999999981
+    ],
+    "datetime": null
+  },
+  "geometry": {
+    "type": "Polygon",
+    "coordinates": [
+      [
+        [
+          -80.87058455751476,
+          38.02388962499688
+        ],
+        [
+          -80.85233120138221,
+          38.11197915846243
+        ],
+        [
+          -80.96603573506756,
+          38.126087169456156
+        ],
+        [
+          -80.98415672937534,
+          38.037980924093894
+        ],
+        [
+          -80.87058455751476,
+          38.02388962499688
+        ]
+      ]
+    ]
+  },
+  "links": [
+    {
+      "rel": "root",
+      "href": "../collection.json",
+      "type": "application/json",
+      "title": "13-Class Chesapeake Bay Watershed Land Cover Classification"
+    },
+    {
+      "rel": "collection",
+      "href": "../collection.json",
+      "type": "application/json",
+      "title": "13-Class Chesapeake Bay Watershed Land Cover Classification"
+    },
+    {
+      "rel": "parent",
+      "href": "../collection.json",
+      "type": "application/json",
+      "title": "13-Class Chesapeake Bay Watershed Land Cover Classification"
+    }
+  ],
+  "assets": {
+    "data": {
+      "href": "../../../tests/data-files/Baywide_13Class_20132014_E1300000_N1770000.tif",
+      "type": "image/tiff; application=geotiff; profile=cloud-optimized",
+      "raster:bands": [
+        {
+          "nodata": 0,
+          "sampling": "area",
+          "data_type": "uint8",
+          "spatial_resolution": 1
+        }
+      ],
+      "classification:classes": [
+        {
+          "value": 1,
+          "description": "Water",
+          "color-hint": "00C5FF"
+        },
+        {
+          "value": 2,
+          "description": "Emergent Wetlands",
+          "color-hint": "00A884"
+        },
+        {
+          "value": 3,
+          "description": "Tree Canopy",
+          "color-hint": "267300"
+        },
+        {
+          "value": 4,
+          "description": "Shrubland",
+          "color-hint": "4CE600"
+        },
+        {
+          "value": 5,
+          "description": "Low Vegetation",
+          "color-hint": "A3FF73"
+        },
+        {
+          "value": 6,
+          "description": "Barren",
+          "color-hint": "FFAA00"
+        },
+        {
+          "value": 7,
+          "description": "Structures",
+          "color-hint": "FF0000"
+        },
+        {
+          "value": 8,
+          "description": "Impervious Surfaces",
+          "color-hint": "9C9C9C"
+        },
+        {
+          "value": 9,
+          "description": "Impervious Roads",
+          "color-hint": "000000"
+        },
+        {
+          "value": 10,
+          "description": "Tree Canopy over Structures",
+          "color-hint": "737300"
+        },
+        {
+          "value": 11,
+          "description": "Tree Canopy over Impervious Surfaces",
+          "color-hint": "E6E600"
+        },
+        {
+          "value": 12,
+          "description": "Tree Canopy over impervious Roads",
+          "color-hint": "FFFF73"
+        },
+        {
+          "value": 13,
+          "description": "Aberdeen Proving Ground",
+          "color-hint": "C500FF"
+        }
+      ],
+      "roles": [
+        "data"
+      ]
+    }
+  },
+  "bbox": [
+    -80.98415672937534,
+    38.02388962499688,
+    -80.85233120138221,
+    38.126087169456156
+  ],
+  "stac_extensions": [
+    "https://stac-extensions.github.io/projection/v1.0.0/schema.json",
+    "https://stac-extensions.github.io/raster/v1.0.0/schema.json",
+    "https://stac-extensions.github.io/classification/v1.0.0/schema.json"
+  ],
+  "collection": "chesapeake-lc-13"
+}

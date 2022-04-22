@@ -1,9 +1,9 @@
 import unittest
 
-import stactools.cclc
+import stactools.chesapeake
 
 
 class TestModule(unittest.TestCase):
 
     def test_version(self):
-        self.assertIsNotNone(stactools.cclc.__version__)
+        self.assertIsNotNone(stactools.chesapeake.__version__)

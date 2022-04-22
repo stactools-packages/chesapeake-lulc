@@ -1,0 +1,1 @@
+tests/data-files/Baywide_13Class_20132014_E1300000_N1770000.tif

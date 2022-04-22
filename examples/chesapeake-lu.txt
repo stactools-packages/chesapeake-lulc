@@ -1,0 +1,1 @@
+tests/data-files/BayWide_1m_LU_E1300000_N1770000.tif
