@@ -26,11 +26,6 @@ def create_item(href: str,
     Returns:
         Item: STAC Item object representing the tile of classification data.
     """
-    if collection_id not in constants.COLLECTION_IDS:
-        raise ValueError(
-            f"Invalid collection id: {collection_id}. Must be one "
-            f"of {', '.join(constants.COLLECTION_IDS)}")
-
     metadata = Metadata(href, read_href_modifier)
 
     item = Item(id=metadata.id,
@@ -66,11 +61,6 @@ def create_collection(collection_id: str) -> Collection:
     Returns:
         Collection: The created STAC Collection.
     """
-    if collection_id not in constants.COLLECTION_IDS:
-        raise ValueError(
-            f"Invalid collection id: {collection_id}. Must be one "
-            f"of {', '.join(constants.COLLECTION_IDS)}")
-
     fragment = StacFragments(collection_id).get_collection()
 
     collection = Collection(id=collection_id,
