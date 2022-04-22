@@ -1,6 +1,6 @@
 import unittest
 
-from stactools.chesapeake import stac
+from stactools.chesapeake_lulc import stac
 from tests import test_data
 
 

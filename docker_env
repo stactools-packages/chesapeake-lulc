@@ -1,7 +1,7 @@
 DOCKER_REGISTRY=ghcr.io
 DOCKER_ORG=stactools-packages
-DOCKER_REPO=chesapeake
+DOCKER_REPO=chesapeake-lulc
 DOCKER_TAG=local
 DOCKER_TAG_DEV=local-dev
-DOCKER_WORKDIR=/opt/stactools-chesapeake
-DOCKER_NAMESPACE_PACKAGE_DIR=stactools/chesapeake
+DOCKER_WORKDIR=/opt/stactools-chesapeake-lulc
+DOCKER_NAMESPACE_PACKAGE_DIR=stactools/chesapeake_lulc

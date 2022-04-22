@@ -1,4 +1,4 @@
-name: stactools-chesapeake
+name: stactools-chesapeake-lulc
 channels:
   - conda-forge
   - defaults
