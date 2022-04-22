@@ -17,7 +17,7 @@
 
 # -- Project information -----------------------------------------------------
 
-project = 'chesapeake'
+project = 'chesapeake-lulc'
 copyright = '2022, stactools'
 author = 'stactools'
 

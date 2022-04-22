@@ -5,7 +5,7 @@ import pkg_resources
 from pystac import Asset, Extent, Link, MediaType, Provider
 from pystac.utils import make_absolute_href
 
-from stactools.chesapeake.constants import CollectionId
+from stactools.chesapeake_lulc.constants import CollectionId
 
 
 class StacFragments:
@@ -37,7 +37,7 @@ class StacFragments:
     def _load(self, file_name: str) -> Any:
         try:
             with pkg_resources.resource_stream(
-                    "stactools.chesapeake.fragments",
+                    "stactools.chesapeake_lulc.fragments",
                     f"fragments/{self.collection_id}/{file_name}") as stream:
                 return json.load(stream)
         except FileNotFoundError as e:

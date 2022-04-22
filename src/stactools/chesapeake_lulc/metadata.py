@@ -6,7 +6,7 @@ from rasterio.warp import transform_geom
 from shapely.geometry import box, mapping, shape
 from stactools.core.io import ReadHrefModifier
 
-from stactools.chesapeake.constants import CollectionId
+from stactools.chesapeake_lulc.constants import CollectionId
 
 
 class Metadata:

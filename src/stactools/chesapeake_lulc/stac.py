@@ -7,9 +7,9 @@ from pystac.extensions.projection import ProjectionExtension
 from pystac.extensions.raster import RasterExtension
 from stactools.core.io import ReadHrefModifier
 
-from stactools.chesapeake import constants
-from stactools.chesapeake.fragments import StacFragments
-from stactools.chesapeake.metadata import Metadata
+from stactools.chesapeake_lulc import constants
+from stactools.chesapeake_lulc.fragments import StacFragments
+from stactools.chesapeake_lulc.metadata import Metadata
 
 
 def create_item(href: str,

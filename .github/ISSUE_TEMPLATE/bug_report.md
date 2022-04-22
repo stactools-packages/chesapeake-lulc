@@ -15,7 +15,7 @@ Steps to reproduce the behavior:
 
 > Ex.
 >
-> 1. Install stactools-chesapeake
+> 1. Install stactools-chesapeake-lulc
 > 2. Run `scripts/test`
 > 3. See error
 

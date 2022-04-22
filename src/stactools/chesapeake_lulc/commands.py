@@ -5,23 +5,24 @@ import click
 from click import Choice
 from pystac import CatalogType
 
-from stactools.chesapeake import stac
-from stactools.chesapeake.constants import (DEFAULT_LEFT_BOTTOM,
-                                            DEFAULT_TILE_SIZE, CollectionId)
-from stactools.chesapeake.utils import remove_nodata, tile
+from stactools.chesapeake_lulc import stac
+from stactools.chesapeake_lulc.constants import (DEFAULT_LEFT_BOTTOM,
+                                                 DEFAULT_TILE_SIZE,
+                                                 CollectionId)
+from stactools.chesapeake_lulc.utils import remove_nodata, tile
 
 
-def create_chesapeake_command(cli):
-    """Creates the stactools-chesapeake command line utility."""
+def create_chesapeake_lulc_command(cli):
+    """Creates the stactools-chesapeake-lulc command line utility."""
 
     @cli.group(
-        "chesapeake",
-        short_help=("Commands for working with stactools-chesapeake"),
+        "chesapeake-lulc",
+        short_help=("Commands for working with stactools-chesapeake-lulc"),
     )
-    def chesapeake():
+    def chesapeake_lulc():
         pass
 
-    @chesapeake.command("tile", help="Tiles the input file to a grid")
+    @chesapeake_lulc.command("tile", help="Tiles the input file to a grid")
     @click.argument("INFILE")
     @click.argument("OUTDIR")
     @click.option("-s",
@@ -41,7 +42,7 @@ def create_chesapeake_command(cli):
                      nodata: Optional[int] = None) -> None:
         """Tiles the input file to a grid.
 
-        The source chesapeake data are large GeoTIFFS, so we tile them to COGs.
+        The source chesapeake-lulc data are large GeoTIFFS, so we tile them to COGs.
 
         \b
         Args:
@@ -55,7 +56,7 @@ def create_chesapeake_command(cli):
         """
         tile(infile, outdir, size, left_bottom, nodata)
 
-    @chesapeake.command(
+    @chesapeake_lulc.command(
         "remove-nodata-tifs",
         help="Removes TIF files that contain only nodata values")
     @click.argument("INDIR")
@@ -80,9 +81,10 @@ def create_chesapeake_command(cli):
             nodata_dir = os.path.join(indir, "nodata_tifs")
         remove_nodata(indir, nodata_dir)
 
-    @chesapeake.command(
+    @chesapeake_lulc.command(
         "create-item",
-        short_help=("Create a STAC Item from chesapeake Land Cover COG file"))
+        short_help=("Create a STAC Item from a Chesapeake Land Use or Land "
+                    "Cover COG file"))
     @click.argument("INFILE")
     @click.argument("OUTDIR")
     def create_item_command(infile: str, outdir: str) -> None:
@@ -101,7 +103,7 @@ def create_chesapeake_command(cli):
         item.validate()
         item.save_object()
 
-    @chesapeake.command(
+    @chesapeake_lulc.command(
         "create-collection",
         short_help=("Creates a STAC collection of Chesapeake Conservancy land "
                     "cover or land use classification tiles"),
@@ -136,4 +138,4 @@ def create_chesapeake_command(cli):
         collection.validate_all()
         collection.save()
 
-    return chesapeake
+    return chesapeake_lulc
