@@ -1,4 +1,5 @@
-import os.path
+import os
+import shutil
 from glob import glob
 from typing import List, Optional, Tuple
 
@@ -74,24 +75,29 @@ def create_tiles(left: float,
     return tiles
 
 
-def remove_nodata(indir: str) -> None:
-    """Removes TIF files that contain only nodata values to a new subdirectory
-    named "nodata_tifs"."""
-    nodata_dir = os.path.join(indir, "nodata_tifs")
+def remove_nodata(indir: str, nodata_dir: str) -> None:
+    """Removes TIF files that contain only nodata values to a new directory
+    named "nodata_tifs".
+
+    Args:
+        indir (str): Directory containing the TIF files.
+        nodata_dir (Optional[str]): Directory to move TIF files that contain
+            only nodata values.
+    """
     os.mkdir(nodata_dir)
 
     tif_files = glob(f"{indir}/*.tif")
-    for tif in tif_files:
+    for tif_file in tif_files:
         all_nodata = False
-        with rasterio.open(tif) as src:
+        with rasterio.open(tif_file) as src:
             nodata = src.nodata
             data = src.read(1)
             if np.all((data == nodata)):
                 all_nodata = True
 
         if all_nodata:
-            filename = os.path.basename(tif)
-            os.rename(tif, os.path.join(nodata_dir, filename))
+            filename = os.path.basename(tif_file)
+            shutil.move(tif_file, os.path.join(nodata_dir, filename))
             print("R ", end="", flush=True)
         else:
             print(". ", end="", flush=True)

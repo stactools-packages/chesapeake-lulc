@@ -60,17 +60,25 @@ def create_chesapeake_command(cli):
         "remove-nodata-tifs",
         help="Removes TIF files that contain only nodata values")
     @click.argument("INDIR")
-    def remove_nodata_tifs_command(indir: str) -> None:
-        """Removes TIF files that contain only nodata values.
+    @click.option("-n",
+                  "--nodata_dir",
+                  help="directory to place nodata TIF files")
+    def remove_nodata_tifs_command(indir: str,
+                                   nodata_dir: Optional[str] = None) -> None:
+        """Moves TIF files that contain only nodata values to a new directory.
 
-        Places TIF files that contain only nodata values in a subdirectory named
-        "nodata_tifs". Useful after tiling a large area where many tiles do not
-        intersect valid data."
+        Useful after tiling a large area where many tiles do not intersect valid
+        data. The default location for the new directory is a subdirectory
+        named "nodata_tifs". Use the --nodata_dir option to override this
+        default location and name.
 
         Args:
-            indir (str): Directory of TIF files.
+            indir (str): Directory of TIF files to be examined.
+            nodata_dir (str): Optional directory for the nodata TIF files.
         """
-        remove_nodata(indir)
+        if nodata_dir is None:
+            nodata_dir = os.path.join(indir, "nodata_tifs")
+        remove_nodata(indir, nodata_dir)
 
     @chesapeake.command(
         "create-item",
