@@ -9,7 +9,7 @@ class StacTest(unittest.TestCase):
     def test_create_item_7class_landcover(self) -> None:
         href = test_data.get_path(
             "data-files/Baywide_7class_20132014_E1300000_N1770000.tif")
-        item = stac.create_item(href, "chesapeake-lc-7")
+        item = stac.create_item(href)
         self.assertEqual(item.id, "Baywide_7class_20132014_E1300000_N1770000")
         self.assertEqual(len(item.assets), 1)
         item.validate()
@@ -17,7 +17,7 @@ class StacTest(unittest.TestCase):
     def test_create_item_13class_landcover(self) -> None:
         href = test_data.get_path(
             "data-files/Baywide_13Class_20132014_E1300000_N1770000.tif")
-        item = stac.create_item(href, "chesapeake-lc-13")
+        item = stac.create_item(href)
         self.assertEqual(item.id, "Baywide_13Class_20132014_E1300000_N1770000")
         self.assertEqual(len(item.assets), 1)
         item.validate()
@@ -25,7 +25,7 @@ class StacTest(unittest.TestCase):
     def test_create_item_landuse(self) -> None:
         href = test_data.get_path(
             "data-files/BayWide_1m_LU_E1300000_N1770000.tif")
-        item = stac.create_item(href, "chesapeake-lu")
+        item = stac.create_item(href)
         self.assertEqual(item.id, "BayWide_1m_LU_E1300000_N1770000")
         self.assertEqual(len(item.assets), 1)
         item.validate()
@@ -40,9 +40,7 @@ class StacTest(unittest.TestCase):
             did_it = True
             return href
 
-        _ = stac.create_item(href,
-                             "chesapeake-lu",
-                             read_href_modifier=read_href_modifier)
+        _ = stac.create_item(href, read_href_modifier=read_href_modifier)
         assert did_it
 
     def test_create_collection_7class_landcover(self) -> None:

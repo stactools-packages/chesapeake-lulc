@@ -6,6 +6,8 @@ from rasterio.warp import transform_geom
 from shapely.geometry import box, mapping, shape
 from stactools.core.io import ReadHrefModifier
 
+from stactools.chesapeake.constants import CollectionId
+
 
 class Metadata:
     """Class for accessing Item metadata from a COG."""
@@ -36,7 +38,7 @@ class Metadata:
         return list(shape(self.geometry).bounds)
 
     @property
-    def id(self):
+    def item_id(self):
         return os.path.splitext(os.path.basename(self.href))[0]
 
     @property
@@ -48,3 +50,18 @@ class Metadata:
             "transform": self.source_transform
         }
         return properties
+
+    @property
+    def collection_id(self):
+        filename = self.item_id.lower()
+        if "lu" in filename:
+            id = CollectionId.LU.value
+        elif "7class" in filename:
+            id = CollectionId.LC7.value
+        elif "13class" in filename:
+            id = CollectionId.LC13.value
+        else:
+            raise ValueError(
+                f"Collection ID not able to be inferred from href: {self.href}"
+            )
+        return id

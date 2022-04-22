@@ -5,17 +5,18 @@ import pkg_resources
 from pystac import Asset, Extent, Link, MediaType, Provider
 from pystac.utils import make_absolute_href
 
-from stactools.chesapeake import constants
+from stactools.chesapeake.constants import CollectionId
 
 
 class StacFragments:
     """Class for accessing asset data."""
 
     def __init__(self, collection_id: str) -> None:
-        if collection_id not in constants.COLLECTION_IDS:
+        collection_ids = [id.value for id in CollectionId]
+        if collection_id not in collection_ids:
             raise ValueError(
                 f"Invalid collection id: {collection_id}. Must be one "
-                f"of {', '.join(constants.COLLECTION_IDS)}")
+                f"of {', '.join(collection_ids)}")
         self.collection_id = collection_id
 
     def get_asset(self, href: str) -> Asset:

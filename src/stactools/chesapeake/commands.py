@@ -6,9 +6,8 @@ from click import Choice
 from pystac import CatalogType
 
 from stactools.chesapeake import stac
-from stactools.chesapeake.constants import (COLLECTION_IDS,
-                                            DEFAULT_LEFT_BOTTOM,
-                                            DEFAULT_TILE_SIZE)
+from stactools.chesapeake.constants import (DEFAULT_LEFT_BOTTOM,
+                                            DEFAULT_TILE_SIZE, CollectionId)
 from stactools.chesapeake.utils import remove_nodata, tile
 
 
@@ -85,9 +84,7 @@ def create_chesapeake_command(cli):
         short_help=("Create a STAC Item from chesapeake Land Cover COG file"))
     @click.argument("INFILE")
     @click.argument("OUTDIR")
-    @click.argument("COLLECTION_ID", type=Choice(COLLECTION_IDS))
-    def create_item_command(infile: str, outdir: str,
-                            collection_id: str) -> None:
+    def create_item_command(infile: str, outdir: str) -> None:
         """Creates a STAC Item for a tile of Chesapeake Conservancey land cover
         or land use classification data.
 
@@ -95,10 +92,8 @@ def create_chesapeake_command(cli):
         Args:
             infile (str): HREF of the classification map COG.
             outdir (str): Directory that will contain the STAC Item.
-            collection_id (str): Collection ID. Must be one of
-                "chesapeake-lc-7", "chesapeake-lc-13", or "chesapeake-lu".
         """
-        item = stac.create_item(infile, collection_id)
+        item = stac.create_item(infile)
         item_path = os.path.join(outdir, f"{item.id}.json")
         item.set_self_href(item_path)
         item.make_asset_hrefs_relative()
@@ -112,7 +107,8 @@ def create_chesapeake_command(cli):
     )
     @click.argument("INFILE")
     @click.argument("OUTDIR")
-    @click.argument("COLLECTION_ID", type=Choice(COLLECTION_IDS))
+    @click.argument("COLLECTION_ID",
+                    type=Choice([id.value for id in CollectionId]))
     def create_collection_command(infile: str, outdir: str,
                                   collection_id: str) -> None:
         """Creates a STAC Collection for Items defined by the hrefs in INFILE."
@@ -133,7 +129,7 @@ def create_chesapeake_command(cli):
         collection.set_self_href(os.path.join(outdir, "collection.json"))
         collection.catalog_type = CatalogType.SELF_CONTAINED
         for href in hrefs:
-            item = stac.create_item(href, collection_id)
+            item = stac.create_item(href)
             collection.add_item(item)
         collection.make_all_asset_hrefs_relative()
         collection.validate_all()

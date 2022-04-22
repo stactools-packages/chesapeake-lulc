@@ -13,14 +13,12 @@ from stactools.chesapeake.metadata import Metadata
 
 
 def create_item(href: str,
-                collection_id: str,
                 read_href_modifier: Optional[ReadHrefModifier] = None) -> Item:
     """Create a collection-specific STAC Item for a COG tile of the Chesapeake
     Conservancy land cover or land use data.
 
     Args:
         href (str): HREF to a COG containing classification data.
-        collection (str): The id of the collection to which the Item belongs.
         read_href_modifier (Callable[[str], str]): An optional function to
             modify the href (e.g. to add a token to a url).
     Returns:
@@ -28,7 +26,7 @@ def create_item(href: str,
     """
     metadata = Metadata(href, read_href_modifier)
 
-    item = Item(id=metadata.id,
+    item = Item(id=metadata.item_id,
                 geometry=metadata.geometry,
                 bbox=metadata.bbox,
                 datetime=None,
@@ -38,7 +36,7 @@ def create_item(href: str,
                 })
     item.common_metadata.created = datetime.now(tz=timezone.utc)
 
-    asset = StacFragments(collection_id).get_asset(href)
+    asset = StacFragments(metadata.collection_id).get_asset(href)
     item.add_asset("data", asset)
 
     projection = ProjectionExtension.ext(item, add_if_missing=True)

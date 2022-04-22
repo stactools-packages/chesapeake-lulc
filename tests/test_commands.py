@@ -19,7 +19,7 @@ class ItemCommandTest(CliTestCase):
         infile = test_data.get_path(
             "data-files/Baywide_7class_20132014_E1300000_N1770000.tif")
         with TemporaryDirectory() as tmp_dir:
-            cmd = f"chesapeake create-item {infile} {tmp_dir} chesapeake-lc-7"
+            cmd = f"chesapeake create-item {infile} {tmp_dir}"
             self.run_command(cmd)
             item_path = os.path.join(
                 tmp_dir, "Baywide_7class_20132014_E1300000_N1770000.json")
@@ -30,7 +30,7 @@ class ItemCommandTest(CliTestCase):
         infile = test_data.get_path(
             "data-files/Baywide_13Class_20132014_E1300000_N1770000.tif")
         with TemporaryDirectory() as tmp_dir:
-            cmd = f"chesapeake create-item {infile} {tmp_dir} chesapeake-lc-13"
+            cmd = f"chesapeake create-item {infile} {tmp_dir}"
             self.run_command(cmd)
             item_path = os.path.join(
                 tmp_dir, "Baywide_13Class_20132014_E1300000_N1770000.json")
@@ -41,7 +41,7 @@ class ItemCommandTest(CliTestCase):
         infile = test_data.get_path(
             "data-files/BayWide_1m_LU_E1300000_N1770000.tif")
         with TemporaryDirectory() as tmp_dir:
-            cmd = f"chesapeake create-item {infile} {tmp_dir} chesapeake-lu"
+            cmd = f"chesapeake create-item {infile} {tmp_dir}"
             self.run_command(cmd)
             item_path = os.path.join(tmp_dir,
                                      "BayWide_1m_LU_E1300000_N1770000.json")

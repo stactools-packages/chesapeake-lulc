@@ -31,19 +31,19 @@ Generate STAC Items and Collections for high-resolution (1 meter) Land Use and L
 To create a STAC Item:
 
 ```bash
-$ stac chesapeake create-item <source-cog-file> <output-directory> <collection-id>
+$ stac chesapeake create-item <source-cog-file> <output-directory>
 ```
 
 For example:
 
 ```bash
-$ stac chesapeake create-item tests/data-files/Baywide_7class_20132014_E1300000_N1770000.tif examples chesapeake-lc-7
+$ stac chesapeake create-item tests/data-files/Baywide_7class_20132014_E1300000_N1770000.tif examples
 ```
 
-To create a STAC Collection, a text file containing hrefs to one or more COG files is required:
+To create a STAC Collection, a text file containing hrefs to one or more COG files and the collection id is required:
 
 ```bash
-$ stac chesapeake create-collectin <file-of-cog-hrefs> <output-directory> <collection-id>
+$ stac chesapeake create-collection <file-of-cog-hrefs> <output-directory> <collection-id>
 ```
 
 For example, the following command will create the contents of the `examples/chesapeake-lc-7` directory:
