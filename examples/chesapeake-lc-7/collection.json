@@ -8,7 +8,7 @@
       "rel": "root",
       "href": "./collection.json",
       "type": "application/json",
-      "title": "Chesapeake Bay Watershed Land Cover (7-class)"
+      "title": "Chesapeake Land Cover (7-class)"
     },
     {
       "rel": "describedby",
@@ -81,7 +81,7 @@
       ]
     }
   },
-  "title": "Chesapeake Bay Watershed Land Cover (7-class)",
+  "title": "Chesapeake Land Cover (7-class)",
   "extent": {
     "spatial": {
       "bbox": [

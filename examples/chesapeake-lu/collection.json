@@ -8,7 +8,7 @@
       "rel": "root",
       "href": "./collection.json",
       "type": "application/json",
-      "title": "Chesapeake Bay Watershed Land Use"
+      "title": "Chesapeake Land Use"
     },
     {
       "rel": "describedby",
@@ -131,7 +131,7 @@
       ]
     }
   },
-  "title": "Chesapeake Bay Watershed Land Use",
+  "title": "Chesapeake Land Use",
   "extent": {
     "spatial": {
       "bbox": [

@@ -1,6 +1,6 @@
 {
   "id": "chesapeake-lc-7",
-  "title": "Chesapeake Bay Watershed Land Cover (7-class)",
+  "title": "Chesapeake Land Cover (7-class)",
   "description": "High-resolution 1-meter land cover classification data for the entire Chesapeake Bay watershed based on 2013-2014 imagery from the National Agriculture Imagery Program (NAIP). The product area encompasses over 250,000 square kilometers in New York, Pennsylvania, Maryland, Delaware, West Virginia, Virginia, and the District of Columbia. The dataset was created for the Chesapeake Bay Program (CBP), which is a regional partnership of EPA, other federal, state, and local agencies and governments, nonprofits, and academic institutions, that leads and directs Chesapeake Bay restoration efforts. The dataset is composed of a uniform set of 7 land cover classes.",
   "license": "proprietary",
   "links": [
