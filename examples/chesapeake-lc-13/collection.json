@@ -2,13 +2,13 @@
   "type": "Collection",
   "id": "chesapeake-lc-13",
   "stac_version": "1.0.0",
-  "description": "High-resolution 1-meter land cover classification data for the entire Chesapeake Bay watershed based on 2013-2014 imagery from the National Agriculture Imagery Program (NAIP). The product area encompasses over 250,000 square kilometers in New York, Pennsylvania, Maryland, Delaware, West Virginia, Virginia, and the District of Columbia. The dataset was created for the Chesapeake Bay Program (CBP), which is a regional partnership of EPA, other federal, state, and local agencies and governments, nonprofits, and academic institutions that leads and directs Chesapeake Bay restoration efforts. The dataset is composed of 13 thirteen land cover classes, although not all classes exist in all areas.",
+  "description": "High-resolution 1-meter land cover classification data for the entire Chesapeake Bay watershed based on 2013-2014 imagery from the National Agriculture Imagery Program (NAIP). The product area encompasses over 250,000 square kilometers in New York, Pennsylvania, Maryland, Delaware, West Virginia, Virginia, and the District of Columbia. The dataset was created for the Chesapeake Bay Program (CBP), which is a regional partnership of EPA, other federal, state, and local agencies and governments, nonprofits, and academic institutions, that leads and directs Chesapeake Bay restoration efforts. The dataset is composed of 13 land cover classes, although not all classes are used in all areas.",
   "links": [
     {
       "rel": "root",
       "href": "./collection.json",
       "type": "application/json",
-      "title": "13-Class Chesapeake Bay Watershed Land Cover Classification"
+      "title": "Chesapeake Bay Watershed Land Cover (13-class)"
     },
     {
       "rel": "describedby",
@@ -36,6 +36,7 @@
   "item_assets": {
     "data": {
       "type": "image/tiff; application=geotiff; profile=cloud-optimized",
+      "title": "Land Cover Classes",
       "raster:bands": [
         {
           "nodata": 0,
@@ -116,7 +117,7 @@
       ]
     }
   },
-  "title": "13-Class Chesapeake Bay Watershed Land Cover Classification",
+  "title": "Chesapeake Bay Watershed Land Cover (13-class)",
   "extent": {
     "spatial": {
       "bbox": [
@@ -140,7 +141,8 @@
   "license": "proprietary",
   "keywords": [
     "land cover",
-    "chesapeake bay watershed"
+    "chesapeake bay watershed",
+    "chesapeake conservancy"
   ],
   "providers": [
     {

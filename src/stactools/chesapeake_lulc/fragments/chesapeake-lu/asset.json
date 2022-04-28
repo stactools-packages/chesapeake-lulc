@@ -1,6 +1,5 @@
 {
-  "title": "Land Cover Classes",
-  "roles": ["data"],
+  "title": "Land Use Classes",
   "raster:bands": [
     {
       "nodata": 0,
@@ -95,5 +94,6 @@
       "description": "Pasture/Hay",
       "color-hint": "E69800"
     }
-  ]
+  ],
+  "roles": ["data"]
 }

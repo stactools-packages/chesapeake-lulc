@@ -1,7 +1,7 @@
 {
   "id": "chesapeake-lu",
-  "title": "Chesapeake Bay Watershed Land Use Classification",
-  "description": "High-resolution 1-meter land use classification data for the entire Chesapeake Bay watershed. The dataset was created by modifying the 2013-2014 high-resolution land cover dataset using 13 ancillary datasets including data on zoning, land use, parcel boundaries, landfills, floodplains, and wetlands. The product area encompasses over 250,000 square kilometers in New York, Pennsylvania, Maryland, Delaware, West Virginia, Virginia, and the District of Columbia. The dataset was created for the Chesapeake Bay Program (CBP), which is a regional partnership of EPA, other federal, state, and local agencies and governments, nonprofits, and academic institutions that leads and directs Chesapeake Bay restoration efforts. The dataset is composed of 17 land use classes in Virginia and 16 classes in all other jurisdictions.",
+  "title": "Chesapeake Bay Watershed Land Use",
+  "description": "High-resolution 1-meter land use classification data for the entire Chesapeake Bay watershed. The dataset was created by modifying the 2013-2014 high-resolution land cover dataset using 13 ancillary datasets including data on zoning, land use, parcel boundaries, landfills, floodplains, and wetlands. The product area encompasses over 250,000 square kilometers in New York, Pennsylvania, Maryland, Delaware, West Virginia, Virginia, and the District of Columbia. The dataset was created for the Chesapeake Bay Program (CBP), which is a regional partnership of EPA, other federal, state, and local agencies and governments, nonprofits, and academic institutions, that leads and directs Chesapeake Bay restoration efforts. The dataset is composed of 17 land use classes in Virginia and 16 classes in all other jurisdictions.",
   "license": "proprietary",
   "links": [
     {

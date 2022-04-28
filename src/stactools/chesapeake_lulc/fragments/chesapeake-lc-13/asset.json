@@ -1,4 +1,5 @@
 {
+  "title": "Land Cover Classes",
   "raster:bands": [
     {
       "nodata": 0,
