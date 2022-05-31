@@ -7,7 +7,7 @@ ENV PYTHON_VERSION=3.9
 WORKDIR $DOCKER_WORKDIR
 
 RUN apt-get -y -q update \
-    && apt-get -y -q install libxml2 libxslt \
+    && apt-get -y -q install libxml2-dev \
     && rm -rf /var/lib/apt/lists/
 
 # For caching purposes, install dependencies but remove the actual package
