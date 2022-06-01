@@ -6,20 +6,11 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
 ## [Unreleased]
 
-### Added
+Nothing.
 
-- Everything
+## [0.1.0] - 2022-06-01
 
-### Deprecated
+Initial release.
 
-- Nothing.
-
-### Removed
-
-- Nothing.
-
-### Fixed
-
-- Nothing.
-
-[Unreleased]: <https://github.com/stactools-packages/chesapeake-lulc/tree/main/>
+[Unreleased]: <https://github.com/stactools-packages/chesapeake-lulc/compare/v0.1.0..main>
+[0.1.0]: <https://github.com/stactools-packages/chesapeake-lulc/releases/tag/v0.1.0>
