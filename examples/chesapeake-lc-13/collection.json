@@ -23,6 +23,12 @@
       "title": "Class Descriptions"
     },
     {
+      "rel": "license",
+      "href": "https://www.chesapeakeconservancy.org/conservation-innovation-center/precision-conservation/chesapeake-bay-program/",
+      "type": "text/html",
+      "title": "Data Availability Description"
+    },
+    {
       "rel": "item",
       "href": "./Baywide_13Class_20132014_E1300000_N1770000/Baywide_13Class_20132014_E1300000_N1770000.json",
       "type": "application/json"

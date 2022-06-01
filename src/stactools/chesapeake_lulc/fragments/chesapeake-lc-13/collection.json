@@ -15,6 +15,12 @@
       "href": "https://www.chesapeakeconservancy.org/wp-content/uploads/2020/03/LC_Class_Descriptions.pdf",
       "type": "application/pdf",
       "title": "Class Descriptions"
+    },
+    {
+      "rel": "license",
+      "href": "https://www.chesapeakeconservancy.org/conservation-innovation-center/precision-conservation/chesapeake-bay-program/",
+      "type": "text/html",
+      "title": "Data Availability Description"
     }
   ],
   "keywords": [
